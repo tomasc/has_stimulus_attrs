@@ -2,7 +2,13 @@
 
 require_relative "has_stimulus_attrs/version"
 
+require "has_dom_attrs"
+require "stimulus_helpers"
+
 module HasStimulusAttrs
+  include HasDomAttrs
+  include StimulusHelpers
+
   class << self
     def included(base)
       base.extend ClassMethods

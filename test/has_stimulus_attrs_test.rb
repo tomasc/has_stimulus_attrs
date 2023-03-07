@@ -1,11 +1,7 @@
 require "test_helper"
-require "has_dom_attrs"
-require "stimulus_helpers"
 
 class Component
-  include HasDomAttrs
   include HasStimulusAttrs
-  include StimulusHelpers
 
   attr_accessor :dynamic_value
 
