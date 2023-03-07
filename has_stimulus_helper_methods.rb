@@ -22,7 +22,6 @@ module Modulor
 
         def has_stimulus_class(name, value = nil, controller: nil, **options)
           key = -> { stimulus_class((controller || controller_name), name, "N/A").keys.first }
-
           val = -> {
             v = case value
                 when Proc then instance_exec(&value)
