@@ -16,6 +16,10 @@ module HasStimulusAttrs
   end
 
   module ClassMethods
+    def controller_name
+      raise NotImplementedError
+    end
+
     def has_stimulus_controller(name = controller_name, **options)
       key = :controller
       val = name
