@@ -34,15 +34,6 @@ module HasStimulusAttrs
       prepend___has_stimulus___method(key, val, **options)
     end
 
-    def has_stimulus_actions(**options)
-      controller = options[:controller] || controller_name
-      actions = options.except(:controller, :if, :unless)
-      key = :action
-      val = -> { stimulus_actions(controller, actions).values.first }
-
-      prepend___has_stimulus___method(key, val, **options)
-    end
-
     def has_stimulus_class(name, value, controller: nil, **options)
       key = -> { stimulus_class((controller || controller_name), name, "N/A").keys.first }
       val = -> {
@@ -54,13 +45,6 @@ module HasStimulusAttrs
       }
 
       prepend___has_stimulus___method(key, val, **options)
-    end
-
-    def has_stimulus_classes(**options)
-      classes = options.except(:controller, :if, :unless)
-      classes.each do |name, value|
-        has_stimulus_class(name, value, controller: options[:controller], **options.except(:controller))
-      end
     end
 
     def has_stimulus_outlet(name, value, controller: nil, **options)
@@ -77,13 +61,6 @@ module HasStimulusAttrs
       prepend___has_stimulus___method(key, val, **options)
     end
 
-    def has_stimulus_outlets(**options)
-      outlets = options.except(:controller, :if, :unless)
-      outlets.each do |name, value|
-        has_stimulus_outlet(name, value, controller: options[:controller], **options)
-      end
-    end
-
     def has_stimulus_param(name, value, controller: nil, **options)
       key = -> { stimulus_param((controller || controller_name), name, "N/A").keys.first }
       val = -> {
@@ -96,13 +73,6 @@ module HasStimulusAttrs
       }
 
       prepend___has_stimulus___method(key, val, **options)
-    end
-
-    def has_stimulus_params(**options)
-      params = options.except(:controller, :if, :unless)
-      params.each do |name, value|
-        has_stimulus_param(name, value, controller: options[:controller], **options)
-      end
     end
 
     def has_stimulus_target(name, controller: nil, **options)
@@ -125,13 +95,6 @@ module HasStimulusAttrs
       }
 
       prepend___has_stimulus___method(key, val, **options)
-    end
-
-    def has_stimulus_values(**options)
-      values = options.except(:controller, :if, :unless)
-      values.each do |name, value|
-        has_stimulus_value(name, value, controller: options[:controller], **options)
-      end
     end
 
     private
