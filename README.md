@@ -44,7 +44,7 @@ end
 class DetailsComponent < ApplicationComponent
 end
 
-DetailsComponent.new.controller_name
+DetailsComponent.controller_name
 # => "details-component"
 ```
 
