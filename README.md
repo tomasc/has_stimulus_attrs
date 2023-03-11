@@ -60,17 +60,14 @@ class ModalComponent < ApplicationComponent
 
   has_stimulus_action "click", "onClick"
   has_stimulus_action "click", "onClick", if: :open?
-  has_stimulus_actions open: "disable-scroll", close: "enable-scroll", controller: "scroll-lock", if: :open?
 
   has_stimulus_class "open", "modal--open"
   has_stimulus_class "width", -> { "modal--#{width}" } # resolve the class name dynamically
 
   has_stimulus_outlet "outlet", ".selector"
-  has_stimulus_outlets output: ".output", message: ".message"
 
   has_stimulus_param id: 123
   has_stimulus_param id: -> { id }
-  has_stimulus_params user: { name: "Jens", id: 123 }
 
   has_stimulus_target "target"
   has_stimulus_target "target", controller: "other-controller"
