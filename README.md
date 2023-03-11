@@ -53,25 +53,32 @@ your class:
 
 ```ruby
 class ModalComponent < ApplicationComponent
+  # Controller
   has_stimulus_controller # sets the "controller" data attribute using :controller_name by default
   has_stimulus_controller "click-outside"
   has_stimulus_controller "scroll-lock", if: :open? # conditionally add the controller
   has_stimulus_controller "scroll-lock", unless: :closed? # conditionally add the controller
 
+  # Action
   has_stimulus_action "click", "onClick"
   has_stimulus_action "click", "onClick", if: :open?
 
+  # Class
   has_stimulus_class "open", "modal--open"
   has_stimulus_class "width", -> { "modal--#{width}" } # resolve the class name dynamically
 
+  # Outlet
   has_stimulus_outlet "outlet", ".selector"
 
+  # Param
   has_stimulus_param id: 123
   has_stimulus_param id: -> { id }
 
+  # Target
   has_stimulus_target "target"
   has_stimulus_target "target", controller: "other-controller"
 
+  # Value
   has_stimulus_value "id", 123
   has_stimulus_value "id", -> { id }
   has_stimulus_value "id", -> { id }, controller: "other-controller"
