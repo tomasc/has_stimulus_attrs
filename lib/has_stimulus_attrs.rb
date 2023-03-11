@@ -98,41 +98,40 @@ module HasStimulusAttrs
     end
 
     private
+      def prepend___has_stimulus___method(key, value, **options)
+        prepend(
+          Module.new do
+            define_method :dom_data do
+              cond = options[:if] || options[:unless]
+              cond_value = case cond
+                           when Proc then instance_exec(&cond)
+                           when Symbol, String then send(cond)
+              end
 
-    def prepend___has_stimulus___method(key, value, **options)
-      prepend(
-        Module.new do
-          define_method :dom_data do
-            cond = options[:if] || options[:unless]
-            cond_value = case cond
-                          when Proc then instance_exec(&cond)
-                          when Symbol, String then send(cond)
-            end
+              if cond && options.key?(:if)
+                return super() unless cond_value
+              end
 
-            if cond && options.key?(:if)
-              return super() unless cond_value
-            end
+              if cond && options.key?(:unless)
+                return super() if cond_value
+              end
 
-            if cond && options.key?(:unless)
-              return super() if cond_value
-            end
+              k = case key
+                  when Proc then instance_exec(&key)
+                  else key
+              end
 
-            k = case key
-                when Proc then instance_exec(&key)
-                else key
-            end
+              v = case value
+                  when Proc then instance_exec(&value)
+                  else value
+              end
 
-            v = case value
-                when Proc then instance_exec(&value)
-                else value
-            end
-
-            super().tap do |data|
-              data[k] = [data[k], v].reject(&:blank?).uniq.join(" ")
+              super().tap do |data|
+                data[k] = [data[k], v].reject(&:blank?).uniq.join(" ")
+              end
             end
           end
-        end
-      )
-    end
+        )
+      end
   end
 end

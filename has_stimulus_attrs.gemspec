@@ -11,7 +11,7 @@ Gem::Specification.new do |spec|
   spec.summary = "Helper methods for dealing with stimulus attributes."
   spec.description = "Helper methods for dealing with stimulus attributes."
   spec.homepage = "https://github.com/tomasc/has_stimulus_attrs"
-  spec.required_ruby_version = ">= 3.0.0"
+  spec.required_ruby_version = ">= 3.1.0"
 
   spec.metadata["homepage_uri"] = spec.homepage
   spec.metadata["source_code_uri"] = spec.homepage
@@ -26,10 +26,13 @@ Gem::Specification.new do |spec|
   spec.executables = spec.files.grep(%r{\Aexe/}) { |f| File.basename(f) }
   spec.require_paths = ["lib"]
 
-  spec.add_dependency "stimulus_helpers"
-  spec.add_dependency "has_dom_attrs"
+  spec.add_dependency "stimulus_helpers", "~> 0.1.0"
+  spec.add_dependency "has_dom_attrs", "~> 0.1.0"
 
   spec.add_development_dependency "bundler"
   spec.add_development_dependency "rake"
   spec.add_development_dependency "minitest", "~> 5.0"
+
+  spec.add_development_dependency "lefthook"
+  spec.add_development_dependency "rubocop-rails_config"
 end

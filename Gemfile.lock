@@ -1,50 +1,122 @@
-GIT
-  remote: https://github.com/tomasc/has_dom_attrs.git
-  revision: 69e6b5625ff0487fd07814091fb91af72c022c22
-  specs:
-    has_dom_attrs (0.1.0)
-      activesupport
-
-GIT
-  remote: https://github.com/tomasc/stimulus_helpers.git
-  revision: 6c94a425bf813729e38bdcc33db0c92143d5e3c2
-  specs:
-    stimulus_helpers (0.1.0)
-      activesupport
-
 PATH
   remote: .
   specs:
     has_stimulus_attrs (0.1.0)
-      has_dom_attrs
-      stimulus_helpers
+      has_dom_attrs (~> 0.1.0)
+      stimulus_helpers (~> 0.1.0)
 
 GEM
   remote: https://rubygems.org/
   specs:
+    actionpack (7.0.4.2)
+      actionview (= 7.0.4.2)
+      activesupport (= 7.0.4.2)
+      rack (~> 2.0, >= 2.2.0)
+      rack-test (>= 0.6.3)
+      rails-dom-testing (~> 2.0)
+      rails-html-sanitizer (~> 1.0, >= 1.2.0)
+    actionview (7.0.4.2)
+      activesupport (= 7.0.4.2)
+      builder (~> 3.1)
+      erubi (~> 1.4)
+      rails-dom-testing (~> 2.0)
+      rails-html-sanitizer (~> 1.1, >= 1.2.0)
     activesupport (7.0.4.2)
       concurrent-ruby (~> 1.0, >= 1.0.2)
       i18n (>= 1.6, < 2)
       minitest (>= 5.1)
       tzinfo (~> 2.0)
+    ast (2.4.2)
+    builder (3.2.4)
     concurrent-ruby (1.2.2)
+    crass (1.0.6)
+    erubi (1.12.0)
+    has_dom_attrs (0.1.0)
+      activesupport
     i18n (1.12.0)
       concurrent-ruby (~> 1.0)
+    json (2.6.3)
+    lefthook (1.3.3)
+    loofah (2.19.1)
+      crass (~> 1.0.2)
+      nokogiri (>= 1.5.9)
+    method_source (1.0.0)
     minitest (5.18.0)
+    nokogiri (1.14.2-arm64-darwin)
+      racc (~> 1.4)
+    parallel (1.22.1)
+    parser (3.2.1.1)
+      ast (~> 2.4.1)
+    racc (1.6.2)
+    rack (2.2.6.3)
+    rack-test (2.0.2)
+      rack (>= 1.3)
+    rails-dom-testing (2.0.3)
+      activesupport (>= 4.2.0)
+      nokogiri (>= 1.6)
+    rails-html-sanitizer (1.5.0)
+      loofah (~> 2.19, >= 2.19.1)
+    railties (7.0.4.2)
+      actionpack (= 7.0.4.2)
+      activesupport (= 7.0.4.2)
+      method_source
+      rake (>= 12.2)
+      thor (~> 1.0)
+      zeitwerk (~> 2.5)
+    rainbow (3.1.1)
     rake (13.0.6)
+    regexp_parser (2.7.0)
+    rexml (3.2.5)
+    rubocop (1.48.0)
+      json (~> 2.3)
+      parallel (~> 1.10)
+      parser (>= 3.2.0.0)
+      rainbow (>= 2.2.2, < 4.0)
+      regexp_parser (>= 1.8, < 3.0)
+      rexml (>= 3.2.5, < 4.0)
+      rubocop-ast (>= 1.26.0, < 2.0)
+      ruby-progressbar (~> 1.7)
+      unicode-display_width (>= 2.4.0, < 3.0)
+    rubocop-ast (1.27.0)
+      parser (>= 3.2.1.0)
+    rubocop-minitest (0.29.0)
+      rubocop (>= 1.39, < 2.0)
+    rubocop-packaging (0.5.2)
+      rubocop (>= 1.33, < 2.0)
+    rubocop-performance (1.16.0)
+      rubocop (>= 1.7.0, < 2.0)
+      rubocop-ast (>= 0.4.0)
+    rubocop-rails (2.18.0)
+      activesupport (>= 4.2.0)
+      rack (>= 1.1)
+      rubocop (>= 1.33.0, < 2.0)
+    rubocop-rails_config (1.12.1)
+      railties (>= 5.0)
+      rubocop (>= 1.39.0)
+      rubocop-ast (>= 1.0.1)
+      rubocop-minitest (~> 0.22)
+      rubocop-packaging (~> 0.5)
+      rubocop-performance (~> 1.11)
+      rubocop-rails (~> 2.0)
+    ruby-progressbar (1.13.0)
+    stimulus_helpers (0.1.0)
+      activesupport
+    thor (1.2.1)
     tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
+    unicode-display_width (2.4.2)
+    zeitwerk (2.6.7)
 
 PLATFORMS
   arm64-darwin-21
 
 DEPENDENCIES
   bundler
-  has_dom_attrs!
   has_stimulus_attrs!
+  lefthook
   minitest (~> 5.0)
   rake
-  stimulus_helpers!
+  rubocop-rails_config
 
 BUNDLED WITH
    2.3.14
