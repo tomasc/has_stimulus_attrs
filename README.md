@@ -1,5 +1,7 @@
 # HasStimulusAttrs
 
+[![HasStimulusAttrs](https://github.com/tomasc/has_stimulus_attrs/actions/workflows/ruby.yml/badge.svg)](https://github.com/tomasc/has_stimulus_attrs/actions/workflows/ruby.yml)
+
 Helper methods for dealing with [stimulus](https://stimulus.hotwired.dev/) data attributes.
 
 Relies on [`has_dom_attrs`](github.com/tomasc/has_dom_attrs) and [`stimulus_helpers`](github.com/tomasc/stimulus_helpers).
