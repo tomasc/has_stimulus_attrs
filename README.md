@@ -71,8 +71,8 @@ class ModalComponent < ApplicationComponent
   has_stimulus_outlet "outlet", ".selector"
 
   # Param
-  has_stimulus_param id: 123
-  has_stimulus_param id: -> { id }
+  has_stimulus_param :id, 123
+  has_stimulus_param :id, -> { id }
 
   # Target
   has_stimulus_target "target"
