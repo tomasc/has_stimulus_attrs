@@ -4,6 +4,7 @@ require_relative "has_stimulus_attrs/version"
 
 require "has_dom_attrs"
 require "stimulus_helpers"
+require "active_support/core_ext/object/blank"
 
 module HasStimulusAttrs
   include HasDomAttrs

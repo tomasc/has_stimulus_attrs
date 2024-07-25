@@ -14,7 +14,7 @@ jobs:
     env:
       GEM_NAME: has_stimulus_attrs
     steps:
-      - uses: GoogleCloudPlatform/release-please-action@v3
+      - uses: googleapis/release-please-action@v4
         with:
           release-type: ruby
           package-name: ${{ env.GEM_NAME }}
