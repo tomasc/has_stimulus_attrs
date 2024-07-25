@@ -26,9 +26,9 @@ Gem::Specification.new do |spec|
   spec.executables = spec.files.grep(%r{\Aexe/}) { |f| File.basename(f) }
   spec.require_paths = ["lib"]
 
-  spec.add_dependency "stimulus_helpers", "~> 0.1.0"
-  spec.add_dependency "has_dom_attrs", "~> 0.1.0"
-  spec.add_dependency "activesupport", ">= 7.0.0"
+  spec.add_dependency "stimulus_helpers", "~> 0.1"
+  spec.add_dependency "has_dom_attrs", "~> 0.1"
+  spec.add_dependency "activesupport", ">= 7.0"
 
   spec.add_development_dependency "bundler"
   spec.add_development_dependency "rake"
