@@ -35,7 +35,13 @@ module HasStimulusAttrs
                   end
 
       key = :action
-      val = -> { stimulus_action((controller || controller_name), event, action).values.first }
+      val = -> {
+        a = case action
+            when Proc then instance_exec(&action)
+            else action.to_s
+        end
+        stimulus_action((controller || controller_name), event, a).values.first
+      }
 
       prepend___has_stimulus___method(key, val, **options)
     end
