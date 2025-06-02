@@ -2,19 +2,15 @@
 
 [![HasStimulusAttrs](https://github.com/tomasc/has_stimulus_attrs/actions/workflows/ruby.yml/badge.svg)](https://github.com/tomasc/has_stimulus_attrs/actions/workflows/ruby.yml)
 
-Helper methods for dealing with [stimulus](https://stimulus.hotwired.dev/) data attributes.
+A Ruby DSL for managing [Stimulus.js](https://stimulus.hotwired.dev/) data attributes in component-based architectures.
 
-Relies on [`has_dom_attrs`](https://github.com/tomasc/has_dom_attrs) and [`stimulus_helpers`](https://github.com/tomasc/stimulus_helpers).
+Built on [`has_dom_attrs`](https://github.com/tomasc/has_dom_attrs) and [`stimulus_helpers`](https://github.com/tomasc/stimulus_helpers).
 
 ## Installation
 
-Install the gem and add to the application's Gemfile by executing:
-
-    $ bundle add has_stimulus_attrs
-
-If bundler is not being used to manage dependencies, install the gem by executing:
-
-    $ gem install has_stimulus_attrs
+```bash
+bundle add has_stimulus_attrs
+```
 
 ## Usage
 
@@ -48,8 +44,7 @@ DetailsComponent.controller_name
 # => "details-component"
 ```
 
-You can then use the included class methods to easily set stimulus attributes on
-your class:
+Use the DSL methods to define Stimulus attributes:
 
 ```ruby
 class ModalComponent < ApplicationComponent
@@ -87,9 +82,10 @@ end
 
 ## Development
 
-After checking out the repo, run `bin/setup` to install dependencies. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
-
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and the created tag, and push the `.gem` file to [rubygems.org](https://rubygems.org).
+```bash
+bin/setup    # Install dependencies
+bin/console  # Interactive prompt
+```
 
 ## Contributing
 
