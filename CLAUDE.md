@@ -169,6 +169,25 @@ has_stimulus_value "userId", -> { current_user.id }
 has_stimulus_value :timeout  # calls timeout method
 ```
 
+#### `reset_dom_data_cache!`
+
+Manually clears the cached `dom_data` result, forcing recomputation on the next call.
+
+```ruby
+class DynamicComponent
+  include HasStimulusAttrs
+  
+  attr_accessor :state
+  
+  has_stimulus_value "state", -> { state }
+  
+  def update_state(new_state)
+    @state = new_state
+    reset_dom_data_cache! # Force recomputation
+  end
+end
+```
+
 ### Options
 
 All methods support these options:
@@ -479,23 +498,71 @@ has_stimulus_target "button", controller: "modal"  # Different target!
 
 ## Performance Considerations
 
-1. **Lazy Evaluation**: Procs are evaluated only when `dom_data` is called
-2. **Caching**: Consider caching `dom_data` if called multiple times
-3. **Conditional Attributes**: Use `:if`/`:unless` to avoid unnecessary attributes
+HasStimulusAttrs includes several built-in performance optimizations:
+
+### Built-in Optimizations
+
+1. **Automatic Memoization**: `dom_data` is automatically cached after first computation
+2. **Early Conditional Exit**: Expensive Procs are skipped when `:if`/`:unless` conditions fail
+3. **Controller Name Caching**: Instance-level caching avoids repeated class method calls
+4. **Lazy Evaluation**: Procs are only evaluated when `dom_data` is called
+
+### Performance Methods
+
+#### `reset_dom_data_cache!`
+
+Manually clear the cached `dom_data` when component state changes:
+
+```ruby
+class DynamicComponent
+  include HasStimulusAttrs
+  
+  attr_accessor :theme
+  
+  def self.controller_name
+    "dynamic"
+  end
+  
+  has_stimulus_value "theme", -> { theme }
+  
+  def theme=(new_theme)
+    @theme = new_theme
+    reset_dom_data_cache! # Clear cache when state changes
+  end
+end
+```
+
+### Optimization Best Practices
+
+1. **Use Conditional Attributes**: Leverage `:if`/`:unless` for expensive operations
+2. **Cache External Data**: Pre-fetch expensive data rather than computing in Procs
+3. **Reset Cache Appropriately**: Call `reset_dom_data_cache!` only when component state changes
 
 ```ruby
 class OptimizedComponent
   include HasStimulusAttrs
   
-  def dom_data
-    @dom_data ||= super  # Cache the result
-  end
-  
-  # Only include heavy controllers when needed
+  # These are automatically optimized:
   has_stimulus_controller "rich-text-editor", if: :rich_text_enabled?
   has_stimulus_controller "syntax-highlighter", if: :code_blocks_present?
+  has_stimulus_value "config", -> { expensive_config_computation }
+  
+  private
+  
+  def expensive_config_computation
+    # This will only run once per component instance
+    # unless reset_dom_data_cache! is called
+    complex_calculation
+  end
 end
 ```
+
+### Performance Impact
+
+- **Memoized calls**: No Proc re-evaluation on subsequent `dom_data` calls
+- **Conditional skipping**: Expensive operations avoided when conditions aren't met
+- **Cached controller names**: Single class method call per instance
+- **Memory efficient**: Cache cleared automatically when component is garbage collected
 
 ## Debugging Tips
 
@@ -523,6 +590,11 @@ Use browser developer tools to inspect the generated HTML and ensure Stimulus at
 
 ## Version History
 
+- **0.3.0** (Unreleased): Major performance optimizations
+  - Automatic `dom_data` memoization to prevent expensive Proc re-evaluation
+  - Early conditional exit optimization for `:if`/`:unless` attributes
+  - Controller name instance-level caching
+  - Added `reset_dom_data_cache!` method for manual cache management
 - **0.2.2** (2025-01-31): Added support for Proc in `has_stimulus_action`
 - **0.2.0** (2023-03-22): Added Proc support for controller option
 - **0.1.0**: Initial release
