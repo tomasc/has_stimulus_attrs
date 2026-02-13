@@ -39,7 +39,7 @@ module HasStimulusAttrs
     def has_stimulus_action(event, action, controller: nil, **options)
       controller = case controller
                    when Proc then instance_exec(&controller)
-                   when Symbol then send(controller)
+                   when Symbol then send(value)
                    else controller
       end
 
@@ -58,7 +58,7 @@ module HasStimulusAttrs
     def has_stimulus_class(name, value, controller: nil, **options)
       controller = case controller
                    when Proc then instance_exec(&controller)
-                   when Symbol then send(controller)
+                   when Symbol then send(value)
                    else controller
       end
 
@@ -77,7 +77,7 @@ module HasStimulusAttrs
     def has_stimulus_outlet(name, value, controller: nil, **options)
       controller = case controller
                    when Proc then instance_exec(&controller)
-                   when Symbol then send(controller)
+                   when Symbol then send(value)
                    else controller
       end
 
@@ -85,7 +85,7 @@ module HasStimulusAttrs
       val = -> {
         v = case value
             when Proc then instance_exec(&value)
-            when Symbol then send(controller)
+            when Symbol then send(value)
             else value
         end
         stimulus_outlet((controller || controller_name), name, v).values.first
@@ -97,7 +97,7 @@ module HasStimulusAttrs
     def has_stimulus_param(name, value, controller: nil, **options)
       controller = case controller
                    when Proc then instance_exec(&controller)
-                   when Symbol then send(controller)
+                   when Symbol then send(value)
                    else controller
       end
 
@@ -105,7 +105,7 @@ module HasStimulusAttrs
       val = -> {
         v = case value
             when Proc then instance_exec(&value)
-            when Symbol then send(controller)
+            when Symbol then send(value)
             else value
         end
         stimulus_param((controller || controller_name), name, v).values.first
@@ -117,7 +117,7 @@ module HasStimulusAttrs
     def has_stimulus_target(name, controller: nil, **options)
       controller = case controller
                    when Proc then instance_exec(&controller)
-                   when Symbol then send(controller)
+                   when Symbol then send(value)
                    else controller
       end
 
@@ -130,7 +130,7 @@ module HasStimulusAttrs
     def has_stimulus_value(name, value = nil, controller: nil, **options)
       controller = case controller
                    when Proc then instance_exec(&controller)
-                   when Symbol then send(controller)
+                   when Symbol then send(value)
                    else controller
       end
 
