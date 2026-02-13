@@ -4,4 +4,5 @@ Style/HashSyntax:
   EnforcedShorthandSyntax: always
 
 AllCops:
+  NewCops: enable
   TargetRubyVersion: 4.0.1
