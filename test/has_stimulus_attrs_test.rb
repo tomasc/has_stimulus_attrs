@@ -29,28 +29,34 @@ class Component
   has_stimulus_action "click", "onClick"
   has_stimulus_action "click", "onClick", controller: "other--controller"
   has_stimulus_action "click", "onClick", controller: -> { "proc--controller" }
+  has_stimulus_action "click", "onClick", controller: -> { instance_method_controller }
 
   has_stimulus_class "class_name", "component_class_name"
   has_stimulus_class "class_name", "component_class_name", controller: -> { "proc--controller" }
+  has_stimulus_class "class_name", "component_class_name", controller: -> { instance_method_controller }
   has_stimulus_class "proc_class_name", -> { dynamic_value }, controller: "other--controller"
   has_stimulus_class "sym_class_name", :other_class_name, controller: "other--controller"
 
   has_stimulus_outlet "outlet", ".selector"
   has_stimulus_outlet "outlet", ".selector", controller: -> { "proc--controller" }
+  has_stimulus_outlet "outlet", ".selector", controller: -> { instance_method_controller }
   has_stimulus_outlet "proc_outlet", -> { dynamic_value }, controller: "other--controller"
   has_stimulus_outlet "sym_outlet", :dynamic_value, controller: "other--controller"
 
   has_stimulus_param "param", "param_value"
   has_stimulus_param "param", "param_value", controller: -> { "proc--controller" }
+  has_stimulus_param "param", "param_value", controller: -> { instance_method_controller }
   has_stimulus_param "proc_param", -> { dynamic_value }, controller: "other--controller"
   has_stimulus_param "sym_param", :dynamic_value, controller: "other--controller"
 
   has_stimulus_target "target"
   has_stimulus_target "target", controller: "other--controller"
   has_stimulus_target "target", controller: -> { "proc--controller" }
+  has_stimulus_target "target", controller: -> { instance_method_controller }
 
   has_stimulus_value "value", "value_value"
   has_stimulus_value "value", "value_value", controller: -> { "proc--controller" }
+  has_stimulus_value "value", "value_value", controller: -> { instance_method_controller }
   has_stimulus_value "proc_value", -> { dynamic_value }, controller: "other--controller"
   has_stimulus_value "sym_value", :dynamic_value, controller: "other--controller"
 
@@ -87,6 +93,8 @@ class HasStimulusAttrsTest < Minitest::Test
     assert_includes dom_data[:controller], "proc--controller"
     assert_includes dom_data[:action], "click->component-controller#onClick"
     assert_includes dom_data[:action], "click->other--controller#onClick"
+    assert_includes dom_data[:action], "click->proc--controller#onClick"
+    assert_includes dom_data[:action], "click->instance-method-controller#onClick"
   end
 
   def test_has_stimulus_class
@@ -95,6 +103,8 @@ class HasStimulusAttrsTest < Minitest::Test
 
     assert_includes dom_data[:controller], "proc--controller"
     assert_equal "component_class_name", dom_data["component-controller-class-name-class"]
+    assert_equal "component_class_name", dom_data["proc--controller-class-name-class"]
+    assert_equal "component_class_name", dom_data["instance-method-controller-class-name-class"]
     assert_equal "foo", dom_data["other--controller-proc-class-name-class"]
     assert_equal "other_class_name", dom_data["other--controller-sym-class-name-class"]
   end
@@ -105,6 +115,8 @@ class HasStimulusAttrsTest < Minitest::Test
 
     assert_includes dom_data[:controller], "proc--controller"
     assert_equal ".selector", dom_data["component-controller-outlet-outlet"]
+    assert_equal ".selector", dom_data["proc--controller-outlet-outlet"]
+    assert_equal ".selector", dom_data["instance-method-controller-outlet-outlet"]
     assert_equal "foo", dom_data["other--controller-proc-outlet-outlet"]
     assert_equal "foo", dom_data["other--controller-sym-outlet-outlet"]
   end
@@ -115,6 +127,8 @@ class HasStimulusAttrsTest < Minitest::Test
 
     assert_includes dom_data[:controller], "proc--controller"
     assert_equal "param_value", dom_data["component-controller-param-param"]
+    assert_equal "param_value", dom_data["proc--controller-param-param"]
+    assert_equal "param_value", dom_data["instance-method-controller-param-param"]
     assert_equal "foo", dom_data["other--controller-proc-param-param"]
     assert_equal "foo", dom_data["other--controller-sym-param-param"]
   end
@@ -126,6 +140,8 @@ class HasStimulusAttrsTest < Minitest::Test
     assert_includes dom_data[:controller], "proc--controller"
     assert_equal "target", dom_data["component-controller-target"]
     assert_equal "target", dom_data["other--controller-target"]
+    assert_equal "target", dom_data["proc--controller-target"]
+    assert_equal "target", dom_data["instance-method-controller-target"]
   end
 
   def test_has_stimulus_value
@@ -134,6 +150,8 @@ class HasStimulusAttrsTest < Minitest::Test
 
     assert_includes dom_data[:controller], "proc--controller"
     assert_equal "value_value", dom_data["component-controller-value-value"]
+    assert_equal "value_value", dom_data["proc--controller-value-value"]
+    assert_equal "value_value", dom_data["instance-method-controller-value-value"]
     assert_equal "foo", dom_data["other--controller-proc-value-value"]
     assert_equal "foo", dom_data["other--controller-sym-value-value"]
   end

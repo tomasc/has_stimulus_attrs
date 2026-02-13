@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.4.0](https://github.com/tomasc/has_stimulus_attrs/compare/v0.3.0...v0.4.0) (2025-02-13)
+
+### Bug Fixes
+
+* **Defer Proc controller evaluation to runtime**: Fixed `controller:` option with Proc values in `has_stimulus_action`, `has_stimulus_class`, `has_stimulus_outlet`, `has_stimulus_param`, `has_stimulus_target`, and `has_stimulus_value` — Procs were incorrectly evaluated at class definition time via `instance_exec`, causing failures when referencing instance methods. Controller Procs are now resolved inside runtime lambdas, matching the existing behavior of `has_stimulus_controller`.
+
 ## [0.3.0](https://github.com/tomasc/has_stimulus_attrs/compare/v0.2.2...v0.3.0) (2025-01-02)
 
 ### Performance
