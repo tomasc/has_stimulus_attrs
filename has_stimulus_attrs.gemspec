@@ -5,8 +5,8 @@ require_relative "lib/has_stimulus_attrs/version"
 Gem::Specification.new do |spec|
   spec.name = "has_stimulus_attrs"
   spec.version = HasStimulusAttrs::VERSION
-  spec.authors = ["Tomas Celizna", "Asger Behncke Jacobsen"]
-  spec.email = ["tomas.celizna@gmail.com", "a@asgerbehnckejacobsen.dk"]
+  spec.authors = [ "Tomas Celizna", "Asger Behncke Jacobsen" ]
+  spec.email = [ "tomas.celizna@gmail.com", "a@asgerbehnckejacobsen.dk" ]
 
   spec.summary = "Helper methods for dealing with stimulus attributes."
   spec.description = "Helper methods for dealing with stimulus attributes."
@@ -24,7 +24,7 @@ Gem::Specification.new do |spec|
   end
   spec.bindir = "exe"
   spec.executables = spec.files.grep(%r{\Aexe/}) { |f| File.basename(f) }
-  spec.require_paths = ["lib"]
+  spec.require_paths = [ "lib" ]
 
   spec.add_dependency "stimulus_helpers", "~> 0.1"
   spec.add_dependency "has_dom_attrs", "~> 0.1"
@@ -35,5 +35,5 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "minitest", "~> 6.0"
 
   spec.add_development_dependency "lefthook"
-  spec.add_development_dependency "rubocop-rails_config"
+  spec.add_development_dependency "rubocop-rails-omakase"
 end

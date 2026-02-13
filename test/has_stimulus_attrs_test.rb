@@ -21,6 +21,7 @@ class Component
 
   has_stimulus_controller
   has_stimulus_controller -> { "proc--controller" }
+  has_stimulus_controller -> { instance_method_controller }
   has_stimulus_controller "other--controller"
   has_stimulus_controller "if--controller", if: :if?
   has_stimulus_controller "unless--controller", unless: :unless?
@@ -60,6 +61,10 @@ class Component
   def unless?
     true
   end
+
+  def instance_method_controller
+    "instance-method-controller"
+  end
 end
 
 class HasStimulusAttrsTest < Minitest::Test
@@ -69,6 +74,7 @@ class HasStimulusAttrsTest < Minitest::Test
 
     assert_includes dom_data[:controller], "component-controller"
     assert_includes dom_data[:controller], "proc--controller"
+    assert_includes dom_data[:controller], "instance-method-controller"
     assert_includes dom_data[:controller], "other--controller"
     assert_includes dom_data[:controller], "if--controller"
     refute_includes dom_data[:controller], "unless--controller"
