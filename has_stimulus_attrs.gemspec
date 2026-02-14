@@ -30,6 +30,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency "has_dom_attrs", "~> 0.1"
   spec.add_dependency "activesupport", ">= 7.0"
 
+  spec.add_development_dependency "benchmark"
   spec.add_development_dependency "bundler"
   spec.add_development_dependency "rake"
   spec.add_development_dependency "minitest", "~> 6.0"
