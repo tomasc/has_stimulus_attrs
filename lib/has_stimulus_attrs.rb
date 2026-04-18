@@ -169,9 +169,9 @@ module HasStimulusAttrs
               else value
               end
 
-              super().tap do |data|
-                data[k] = [ data[k], v ].reject(&:blank?).uniq.join(" ")
-              end
+              current = super()
+              merged_value = [ current[k], v ].reject(&:blank?).uniq.join(" ")
+              current.merge(k => merged_value)
             end
           end
         )

@@ -1,5 +1,11 @@
 # Changelog
 
+## Unreleased
+
+### Bug Fixes
+
+* **Non-mutating prepend pattern**: `prepend___has_stimulus___method` now builds a new Hash via `super().merge(k => v)` instead of mutating the Hash returned by super via `.tap { |d| d[k] = v }`. Required for compatibility with has_dom_attrs ≥ 0.3 (tomasc/has_dom_attrs#2), where `HasDomAttrs#dom_data` returns a shared frozen `EMPTY_HASH` constant to cut allocations. No behavioral change for existing consumers; works against both old-mutable and new-frozen bases.
+
 ## [0.4.1](https://github.com/tomasc/has_stimulus_attrs/compare/v0.3.0...v0.4.1) (2025-02-13)
 
 ### Bug Fixes
