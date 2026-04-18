@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## [0.5.0](https://github.com/tomasc/has_stimulus_attrs/compare/v0.4.1...v0.5.0) (2026-04-18)
 
 ### Bug Fixes
 
